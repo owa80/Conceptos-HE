@@ -1,0 +1,334 @@
+1. cat (concatenate)
+
+Uso: cat se utiliza principalmente para leer y concatenar archivos.
+Opciones comunes:
+
+    -n: Numera las líneas de salida.
+    -b: Numera solo las líneas no vacías.
+
+Ejemplo 1: Mostrar el contenido de un archivo
+
+bash
+
+cat archivo.txt
+
+Archivo de ejemplo (archivo.txt):
+
+Hola
+Mundo
+Bienvenido
+
+Resultado:
+
+Hola
+Mundo
+Bienvenido
+
+Ejemplo 2: Mostrar el contenido de dos archivos concatenados
+
+bash
+
+cat archivo1.txt archivo2.txt
+
+Resultado:
+
+Contenido de archivo1
+Contenido de archivo2
+
+Ejemplo 3: Numerar las líneas de un archivo
+
+bash
+
+cat -n archivo.txt
+
+Resultado:
+
+markdown
+
+     1  Hola
+     2  Mundo
+     3  Bienvenido
+
+2. grep (global regular expression print)
+
+Uso: grep busca líneas que coincidan con un patrón y las imprime.
+Opciones comunes:
+
+    -i: Ignora las mayúsculas/minúsculas.
+    -v: Invertir la búsqueda (mostrar líneas que no coinciden).
+    -r: Buscar recursivamente en subdirectorios.
+    -l: Listar los archivos que contienen el patrón.
+    -c: Contar cuántas veces aparece el patrón.
+
+Ejemplo 1: Buscar una palabra en un archivo
+
+bash
+
+grep "hola" archivo.txt
+
+Archivo de ejemplo (archivo.txt):
+
+Hola mundo
+Esto es un ejemplo
+Hola de nuevo
+
+Resultado:
+
+Hola mundo
+Hola de nuevo
+
+Ejemplo 2: Buscar una palabra sin distinguir entre mayúsculas y minúsculas
+
+bash
+
+grep -i "hola" archivo.txt
+
+Resultado:
+
+Hola mundo
+Hola de nuevo
+
+Ejemplo 3: Contar cuántas veces aparece una palabra
+
+bash
+
+grep -c "hola" archivo.txt
+
+Resultado:
+
+2
+
+Ejemplo 4: Buscar recursivamente en todos los archivos de un directorio
+
+bash
+
+grep -r "error" /var/log
+
+Resultado:
+
+go
+
+/var/log/syslog: error de sistema
+/var/log/messages: error crítico
+
+3. tr (translate)
+
+Uso: tr traduce o elimina caracteres de la entrada.
+Opciones comunes:
+
+    -d: Elimina los caracteres especificados.
+
+Ejemplo 1: Convertir letras minúsculas a mayúsculas
+
+bash
+
+echo "hola mundo" | tr 'a-z' 'A-Z'
+
+Resultado:
+
+HOLA MUNDO
+
+Ejemplo 2: Reemplazar espacios por guiones bajos
+
+bash
+
+echo "hola mundo" | tr ' ' '_'
+
+Resultado:
+
+hola_mundo
+
+Ejemplo 3: Eliminar dígitos
+
+bash
+
+echo "abc123def456" | tr -d '0-9'
+
+Resultado:
+
+abcdef
+
+4. curl (transfer a URL)
+
+Uso: curl transfiere datos desde o hacia un servidor web. Es muy útil para descargar archivos o hacer solicitudes HTTP.
+Opciones comunes:
+
+    -O: Guarda el archivo con el nombre original.
+    -o: Guarda el archivo con un nombre específico.
+    -I: Muestra solo la cabecera de la respuesta HTTP.
+
+Ejemplo 1: Descargar un archivo
+
+bash
+
+curl -O https://www.ejemplo.com/archivo.txt
+
+Resultado: Descarga el archivo archivo.txt en el directorio actual.
+Ejemplo 2: Obtener solo la cabecera HTTP de una URL
+
+bash
+
+curl -I https://www.ejemplo.com
+
+Resultado:
+
+yaml
+
+HTTP/1.1 200 OK
+Date: Fri, 13 Sep 2024 18:30:00 GMT
+Content-Type: text/html; charset=UTF-8
+
+5. awk
+
+Uso: awk es una herramienta de procesamiento de texto que permite buscar y manipular datos por columnas.
+Opciones comunes:
+
+    -F: Especifica el delimitador de campo.
+    $n: Hace referencia a la columna número n.
+
+Ejemplo 1: Mostrar la segunda columna de un archivo
+
+bash
+
+awk '{print $2}' archivo.txt
+
+Archivo de ejemplo (archivo.txt):
+
+1 Hola Mundo
+2 Adiós Mundo
+
+Resultado:
+
+Hola
+Adiós
+
+Ejemplo 2: Sumar la tercera columna de un archivo CSV
+
+bash
+
+awk -F, '{suma += $3} END {print suma}' archivo.csv
+
+Archivo de ejemplo (archivo.csv):
+
+1,productoA,10
+2,productoB,20
+3,productoC,15
+
+Resultado:
+
+45
+
+6. cut
+
+Uso: cut corta secciones específicas de cada línea de un archivo.
+Opciones comunes:
+
+    -d: Especifica el delimitador.
+    -f: Especifica el número de campo (columna).
+
+Ejemplo 1: Extraer la primera columna de un archivo separado por comas
+
+bash
+
+cut -d',' -f1 archivo.csv
+
+Archivo de ejemplo (archivo.csv):
+
+productoA,10,100
+productoB,20,200
+productoC,15,150
+
+Resultado:
+
+productoA
+productoB
+productoC
+
+Ejemplo 2: Extraer los primeros 5 caracteres de cada línea
+
+bash
+
+cut -c1-5 archivo.txt
+
+Resultado:
+
+Hola
+Adiós
+
+7. sed (stream editor)
+
+Uso: sed es un editor de flujo que permite buscar, reemplazar y manipular texto de manera eficiente.
+Opciones comunes:
+
+    s/patrón/reemplazo/: Reemplaza un patrón por un texto.
+    -i: Edita el archivo en el lugar (sin crear un archivo temporal).
+
+Ejemplo 1: Reemplazar una palabra en un archivo
+
+bash
+
+sed 's/mundo/universo/' archivo.txt
+
+Archivo de ejemplo (archivo.txt):
+
+Hola mundo
+Adiós mundo
+
+Resultado:
+
+Hola universo
+Adiós universo
+
+Ejemplo 2: Eliminar líneas que contienen una palabra
+
+bash
+
+sed '/error/d' archivo.log
+
+Archivo de ejemplo (archivo.log):
+
+css
+
+[INFO] Inicio del proceso
+[ERROR] Ocurrió un fallo
+[INFO] Proceso completado
+
+Resultado:
+
+css
+
+[INFO] Inicio del proceso
+[INFO] Proceso completado
+
+Ejemplo 3: Reemplazar todas las ocurrencias de una palabra en el archivo original
+
+bash
+
+sed -i 's/hola/adiós/g' archivo.txt
+
+Resultado: Modifica el archivo original reemplazando todas las instancias de "hola" por "adiós".
+Ejemplo combinado usando varios comandos
+
+Supongamos que tienes un archivo logs.txt con contenido así:
+
+yaml
+
+2024-09-13 12:34:56 INFO Usuario logueado
+2024-09-13 12:35:56 ERROR Fallo al procesar
+2024-09-13 12:36:56 INFO Proceso completado
+
+Podrías usar la siguiente combinación de comandos para:
+
+    Buscar todas las líneas que contienen "ERROR".
+    Extraer la fecha (primer campo).
+    Convertir las fechas a mayúsculas.
+
+bash
+
+grep "ERROR" logs.txt | awk '{print $1}' | tr 'a-z' 'A-Z'
+
+Resultado:
+
+yaml
+
+2024-09-13
